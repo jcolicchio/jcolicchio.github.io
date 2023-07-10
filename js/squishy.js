@@ -4,12 +4,27 @@ $(document).ready(() => {
 	canvas = $('#canvas');
 	var ctx = canvas[0].getContext('2d');
 
-	var cellSize = 0;
-	var width = canvas.width();
-	var height = canvas.height();
+	window.addEventListener('resize', resizeCanvas, false);
+        var width = Math.min(window.innerWidth, 504);
+        var size = 0;
+	var cellSize = size/width;
+
+	canvas.width(width);
+	canvas.height(width);
+	ctx.canvas.width = width;
+	ctx.canvas.height = width;
+
+	function resizeCanvas() {
+		width = Math.min(window.innerWidth, 804);
+		canvas.width(width);
+		canvas.height(width);
+		ctx.canvas.width = width;
+		ctx.canvas.height = width;
+		cellSize = width/size;
+		update()
+	}
 
 	// todo: consider using elixir for procedural generation of maps
-
 
 	game = null;
 
@@ -28,7 +43,7 @@ $(document).ready(() => {
 		var actualMouseX = (e.clientX - rect.left - window.scrollX);
 		var actualMouseY = (e.clientY - rect.top - window.scrollY);
 
-		if(actualMouseX < 0 || actualMouseY < 0 || actualMouseX > width || actualMouseY > height) {
+		if(actualMouseX < 0 || actualMouseY < 0 || actualMouseX > width || actualMouseY > width) {
 			mouseActive = false;
 		}
 		else {
@@ -119,13 +134,14 @@ $(document).ready(() => {
 	}
 
 	function newGame() {
-		var size = Math.floor(Math.random()*3) + 6;
+		size = Math.floor(Math.random()*3) + 6;
 		game = new Game(size, size);
 		cellSize = width/size;
 		mouseUnlocked = false;
 		resetUpdateTimeout();
 	}
 	newGame();
+	resizeCanvas();
 
 	// todo: animations for stars
 	// todo: nice keyboard input?
@@ -209,6 +225,7 @@ $(document).ready(() => {
 			}
 		}
 		
+		console.log(cellSize);
 		game.draw(ctx, cellSize);
 		incrementUpdateTimeout();
 	}
