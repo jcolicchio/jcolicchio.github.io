@@ -5,9 +5,10 @@ $(document).ready(() => {
 	var ctx = canvas[0].getContext('2d');
 
 	window.addEventListener('resize', resizeCanvas, false);
-        var width = Math.min(window.innerWidth, 504);
+        var windowWidth = Math.min(window.innerWidth, 504);
+	var width = windowWidth;
         var size = 0;
-	var cellSize = size/width;
+	var cellSize = Math.floor(size/window);
 
 	canvas.width(width);
 	canvas.height(width);
@@ -15,12 +16,14 @@ $(document).ready(() => {
 	ctx.canvas.height = width;
 
 	function resizeCanvas() {
-		width = Math.min(window.innerWidth, 804);
+		windowWidth = Math.min(window.innerWidth, 804);
+		cellSize = Math.floor(windowWidth/size);
+		width = cellSize*size;
+		
 		canvas.width(width);
 		canvas.height(width);
 		ctx.canvas.width = width;
 		ctx.canvas.height = width;
-		cellSize = width/size;
 		update()
 	}
 
@@ -136,12 +139,11 @@ $(document).ready(() => {
 	function newGame() {
 		size = Math.floor(Math.random()*3) + 6;
 		game = new Game(size, size);
-		cellSize = width/size;
+		resizeCanvas();
 		mouseUnlocked = false;
 		resetUpdateTimeout();
 	}
 	newGame();
-	resizeCanvas();
 
 	// todo: animations for stars
 	// todo: nice keyboard input?
