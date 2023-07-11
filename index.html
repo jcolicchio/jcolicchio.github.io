@@ -1,10 +1,38 @@
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>JoeColicchio</title>
   </head>
-  <body>
-    <span>Hello World</span><br/>
-    <a href="squishy.html">Squishy</a><br/>
-    <a href="https://medium.com/udemy-engineering/xcodegen-tips-and-tricks-3ad10728d8d0">XcodeGen Tips and Tricks</a>
+  <body class="bg-stone-50">
+    <div class="max-w-lg lg:max-w-5xl mx-auto lg:flex items-start p-2 space-x-0 space-y-4 lg:space-x-4 lg:space-y-0">
+      <a href="https://www.linkedin.com/in/joseph-colicchio-b2b7aa6b/" class="lg:w-1/2 lg:flex justify-end">
+        <div class="bg-indigo-100 flex rounded-lg overflow-hidden shadow-lg">
+          <img src="images/selfie.png" class="w-28 h-auto bg-blue-100 object-cover"></img>
+          <div class="my-auto p-4 text-slate-700">
+            <p class="font-semibold">Joseph Colicchio</p>
+            <p class="mb-2">Principal Mobile Engineer at <span class="text-violet-700">Udemy</span></p>
+            <p class="text-sm">2020-Present</p>
+          </div>
+        </div>
+      </a>
+      <div class="lg:w-1/2 space-y-4">
+        <a href="squishy/index.html" class="bg-blue-50 flex items-start rounded-lg p-4 space-x-2 shadow-md">
+          <img src="images/squishy.png" class="w-24 h-24 object-cover"></img>
+          <div class="space-y-2">
+            <p class="text-slate-700 font-semibold">Squishy</p>
+            <p class="text-slate-500 text-sm">A fun little HTML+Canvas toy experimenting with silly animation style. Move the blue square through a maze collecting stars in order without touching any cell twice.</p>
+          </div>
+        </a>
+        <a href="https://medium.com/udemy-engineering/xcodegen-tips-and-tricks-3ad10728d8d0" class="bg-blue-50 flex items-start rounded-lg p-4 space-x-2 shadow-md">
+          <img src="images/xcodegen.webp" class="w-24 h-24 object-cover"></img>
+          <div class="space-y-2">
+            <p class="text-slate-700 font-semibold">XcodeGen Tips and Tricks</p>
+            <p class="text-slate-500 text-sm">An article I wrote about the process of converting our existing <code class="font-semibold text-slate-900">.xcodeproj</code> Xcode project file to yaml representation.</p>
+          </div>
+        </a>
+      </div>
+    </div>
   </body>
 </html>
